@@ -2,75 +2,26 @@ package conta_bancaria;
 
 import java.util.Scanner;
 
+import conta_bancaria.controller.ContaController;
 import conta_bancaria.model.Conta;
 import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
 
 public class Menu {
+
+	private static final Scanner leia = new Scanner(System.in);
+	private static final ContaController contaController = new ContaController();
+	
 	public static void main(String[] args) {
 
 		Scanner leia = new Scanner(System.in);
+		
 
 		int opcao;
-		
-		/* Instanciar objetos da classe conta */
-		
-		Conta c1 = new Conta(1, 123, 1, "Isabella", 200000.00f);
-		c1.visualizar();
-		
-		Conta c2 = new Conta(2, 123, 2, "Thiago", 100000.00f);
-		c2.visualizar();
-		
-		c1.setSaldo(300000.00f);
-		c1.setTitular("Isabella Bruno");
-		c1.visualizar();
-	
-		System.out.println("\n Sacar R$ 1000,00 da conta C2: " + (c2.sacar(1000.00f) ? 
-				"Saque efetuado com sucesso" : "Saldo Insuficiente!"));
-		
-		System.out.println("\n Sacar R$ 3000000,00 da conta C2: " + (c2.sacar(300000.00f) ? 
-				"Saque efetuado com sucesso" : "Saldo Insuficiente!"));
-		
-		 c2.visualizar();
-	     
-	
-	/*Deposito conta c2*/
-		
-	c2.depositar(50000.00f);	
-	c2.visualizar();
-		
-		
-		/**
-		 * if ternario
-		 * condicao ? acao se for vdd : acao se for falso
-		 */
-		
-/*instanciar objetos da classe conta corrente*/
-	
-	ContaCorrente cc1 = new ContaCorrente(3, 789, 1, "Raquel", 200000.00f, 2000.00f);
-	cc1.visualizar();
-	
-	
-	
-
-	System.out.println("\n Sacar R$ 203.000,00 da conta Cc1: " + (cc1.sacar(203.000,00f) ? 
-			"Saque efetuado com sucesso! | Saldo: " + cc1.getSaldo() : "Saldo Insuficiente! | Saldo: " + cc1.getSaldo()));
-	
-
-	System.out.println("\n Sacar R$ 202.000,00 da conta Cc1: " + (cc1.sacar(202.000,00f) ? 
-			"Saque efetuado com sucesso! | Saldo: " + cc1.getSaldo() : "Saldo Insuficiente! | Saldo: " + cc1.getSaldo()));
-	
-	cc1.depositar(2000.00f);
-	cc1.visualizar();
-	
-	//*Teste da Conta Poupanca
-	ContaPoupanca cp1 = new ContaPoupanca(3,123,1, "Juliana Vitoria", 1000.0f, 12);
-	cp1.visualizar();
-	
-	System.out.println("\n Sacar R$ 20.0f da conta Cp1: " + (cp1.sacar(20.0f) ? 
-			"Saque efetuado com sucesso! | Saldo: " + cc1.getSaldo() : "Saldo Insuficiente! | Saldo: " + cc1.getSaldo()));
-	
+		//criar dados de teste
+		criarContasTeste();
+        
 	
 		while (true) {
 
@@ -111,7 +62,7 @@ public class Menu {
 				break;
 			case 2:
 				System.out.println(Cores.TEXT_WHITE + "Listar todas as Contas\n\n");
-
+               listarContas();
 				break;
 			case 3:
 				System.out.println(Cores.TEXT_WHITE + "Consultar dados da Conta - por número\n\n");
@@ -151,5 +102,14 @@ public class Menu {
 		System.out.println("github.com/julianaenob-hub");
 		System.out.println("*********************************************************");
 	}
-
+	public static void criarContasTeste() {
+		contaController.cadastrar(new ContaCorrente(contaController.gerarNumero(), 456, 1, "Thuany Silva", 1000000.00f, 100000.00f));
+		contaController.cadastrar(new ContaPoupanca(contaController.gerarNumero(), 456, 2, "Marcia Condarco", 1000000.00f, 10));
+	}
+	
+	
+public static void listarContas() {
+	contaController.listarTodas();
+}
+	
 }
