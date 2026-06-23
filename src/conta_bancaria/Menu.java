@@ -3,6 +3,8 @@ package conta_bancaria;
 import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
+import conta_bancaria.model.ContaCorrente;
+import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -44,7 +46,32 @@ public class Menu {
 		 * condicao ? acao se for vdd : acao se for falso
 		 */
 		
+/*instanciar objetos da classe conta corrente*/
+	
+	ContaCorrente cc1 = new ContaCorrente(3, 789, 1, "Raquel", 200000.00f, 2000.00f);
+	cc1.visualizar();
+	
+	
+	
 
+	System.out.println("\n Sacar R$ 203.000,00 da conta Cc1: " + (cc1.sacar(203.000,00f) ? 
+			"Saque efetuado com sucesso! | Saldo: " + cc1.getSaldo() : "Saldo Insuficiente! | Saldo: " + cc1.getSaldo()));
+	
+
+	System.out.println("\n Sacar R$ 202.000,00 da conta Cc1: " + (cc1.sacar(202.000,00f) ? 
+			"Saque efetuado com sucesso! | Saldo: " + cc1.getSaldo() : "Saldo Insuficiente! | Saldo: " + cc1.getSaldo()));
+	
+	cc1.depositar(2000.00f);
+	cc1.visualizar();
+	
+	//*Teste da Conta Poupanca
+	ContaPoupanca cp1 = new ContaPoupanca(3,123,1, "Juliana Vitoria", 1000.0f, 12);
+	cp1.visualizar();
+	
+	System.out.println("\n Sacar R$ 20.0f da conta Cp1: " + (cp1.sacar(20.0f) ? 
+			"Saque efetuado com sucesso! | Saldo: " + cc1.getSaldo() : "Saldo Insuficiente! | Saldo: " + cc1.getSaldo()));
+	
+	
 		while (true) {
 
 			System.out.println(Cores.TEXT_YELLOW + Cores.TEXT_PURPLE
