@@ -12,7 +12,7 @@ public class Cores {
 	    public static final String TEXT_BLUE = "\u001B[34m";
 	    public static final String TEXT_PURPLE = "\u001B[35m";
 	    public static final String TEXT_CYAN = "\u001B[36m";
-	    public static final String TEXT_WHITE = "\u001B[37m";
+	    public static final String TEXT_WHITE = "\u001B[30m";
 
 	}
 
